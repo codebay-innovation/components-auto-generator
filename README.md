@@ -6,7 +6,6 @@ It transforms an HTML with a given information to a fully functional component, 
 
 ## CodeBay Framework to generate AEM components
 [![Powered By Codebay Innovation](https://img.shields.io/badge/Powered%20By-Codebay%20Innovation-37c755?labelColor=27d1e0)](https://www.codebay-innovation.com/)
-[![Build Status](https://img.shields.io/badge/build-v1.0.1-lightgrey)]()
 
 ## How to use it:
 
