@@ -1,11 +1,12 @@
 # Issue repository
 This is the main repository for report issues related with the vscode extension "AEM Components Auto Generator"
 
-# Components Auto Generator [![Codebay Innovation](https://www.codebay-innovation.com/components-auto-generator/codebay_logo.png)](https://www.codebay-innovation.com/)
+# AEM Components Auto Generator [![Codebay Innovation](https://www.codebay-innovation.com/components-auto-generator/codebay_logo.png)](https://www.codebay-innovation.com/)
 It transforms an HTML with a given information to a fully functional component, it also adds the model of the component.
 
 ## CodeBay Framework to generate AEM components
 [![Powered By Codebay Innovation](https://img.shields.io/badge/Powered%20By-Codebay%20Innovation-37c755?labelColor=27d1e0)](https://www.codebay-innovation.com/)
+[![Build Status](https://img.shields.io/badge/build-v1.0.12-lightgrey)]()
 
 ## How to use it:
 
@@ -121,6 +122,48 @@ Here is a list of the properties and its uses:
       <span aem-property="language" aem-property-label="Language" aem-property-value="Spanish" aem-property-type="select" aem-property-options="Spanish,English,German">Spanish<span> 
       ```
 
+    * Attribute definitions: The following syntaxis is to specify an attribute in HTML, beeing "nameAttr" the name of the attribute we want to configure
+      * aem-attribute-nameAttr-name: The name of the specified attribute in the dialog and model.
+        * Use case:
+          ```html
+            <div aem-attribute-href-name="hrefOfMyLink" ...></div> 
+          ```
+      * aem-attribute-nameAttr-label: Label in the dialog of the specified attribute.
+        * Use case:
+          ```html
+            <div aem-attribute-href-label="Link" ...></div> 
+          ```
+      * aem-attribute-nameAttr-value: Default shown value when the attribute is empty.
+        * Use case:
+          ```html
+            <div aem-attribute-href-value="#" ...></div> 
+          ```
+      * aem-attribute-nameAttr-type: The type of the specified attribute in the dialog input. The following list shows all possible cases:
+          * autocomplete
+          * checkbox
+          * colorfield
+          * datepicker
+          * fileupload
+          * hidden
+          * numberfield
+          * password
+          * pathbrowser
+          * pathfield
+          * switch
+          * textarea
+          * textfield
+          * multifield
+          * select
+      * Use cases:
+      ```html
+       <a aem-attribute-href-name="theHrefOfMyComp" aem-attribute-href-label="Href Label" aem-attribute-href-type="textfield" aem-attribute-href-value="#" ></a> 
+
+
+      <img aem-attribute-src-name="theSrcOfMyComp2" aem-attribute-src-label="test" aem-attribute-src-type="textfield" aem-attribute-src-value="#"/>
+      ```
+      The previous two cases will let you configure the href and src HTML attribute from the dialog.
+
+
 * Special uses:
     * Select: For select widgets to specify options you must use aem-property-options, if not specified, the widget will not be created.
     * Multifield: The children elements of the specified multifield will be the shown widgets when the multifield loads.
@@ -130,11 +173,11 @@ Here is a list of the properties and its uses:
           <li aem-property="title" aem-property-type="textfield" aem-property-label="Title">Title</li> 
           <li aem-property="description" aem-property-type="textfield" aem-property-label="Description">Description</li> 
         </ul>
-        ## Properties "title" and "description" will be created as properties inside the multifield "myMultifield". 
         ```
+        Properties "title" and "description" will be created as properties inside the multifield "myMultifield". 
 ### Code Snippets
 
-In realative path
+In relative path
 ```html
 <div aem-component-path="ui.apps\src\main\content\jcr_root\apps\myProject\components\new-components" 
 aem-models-package="com.codebay.myproject.core.models.newcomponents"> 
@@ -142,18 +185,18 @@ aem-models-package="com.codebay.myproject.core.models.newcomponents">
    <h1 class="test-for class attr" aem-property="title" 
      aem-property-type="textarea" aem-property-value="Default title value" aem-property-label="Preview title"> 
      <div aem-property="subTitle" aem-property-type="textfield" aem-property-value="Default subtitle value"> 
-       <span aem-property="subTitleColoring" aem-property-type="colorfield" 
-         aem-property-label="Subtitle Coloring"></span> 
-     </div> 
+       <a aem-attribute-href-name="theHrefOfMyComp" aem-attribute-href-label="Href Label" aem-attribute-href-type="textfield" aem-attribute-href-value="#" aem-property="subTitleColoring" aem-property-type="colorfield" aem-property-label="Subtitle Coloring"></a> 
+     </div>
+     <img aem-attribute-src-name="theSrcOfMyComp2" aem-attribute-src-label="test" aem-attribute-src-type="textfield" aem-attribute-src-value="#"/>
      <p aem-property="upperTitle" aem-property-type="textarea" aem-property-label="Upper title"></p> 
-   </h1> 
+   </h1>
    <p aem-property="number" aem-property-type="numberfield"></p> 
    <ul aem-property="myMultifield" aem-property-type="multifield" aem-property-label="My Multifield"> 
      <li aem-property="title" aem-property-type="textfield" aem-property-label="Property 1">Title</li> 
-     <li aem-property="description" aem-property-type="select" aem-property-options="option1, option2" 
+     <li aem-property="description" aem-property-type="select" aem-property-options="option1,option2" 
        aem-property-label="Description">Lorem ipsum</li> 
    </ul> 
-   <li aem-property="mySelect" aem-property-type="select" aem-property-options="option1, option2,option3" 
+   <li aem-property="mySelect" aem-property-type="select" aem-property-options="option1,option2,option3" 
      aem-property-label="Select Example"></li> 
  </div> 
  <div aem-component-name="authorInfo" aem-component-group="My Project - Structure" 
@@ -162,11 +205,12 @@ aem-models-package="com.codebay.myproject.core.models.newcomponents">
      aem-property-type="textfield" aem-property-value="Default Name value" aem-property-label="Name"> 
    </h1> 
    <div aem-property="surname" aem-property-type="textfield" aem-property-value="Default Surname value"> 
-     <span aem-property="favouritecolor" aem-property-type="colorfield" aem-property-label="Favourite Coloring"></span> 
+      <span aem-property="favouritecolor" aem-property-type="colorfield" aem-property-label="Favourite Coloring"></span> 
    </div> 
    <p aem-property="age" aem-property-type="numberfield" aem-property-label="Numberfield"></p> 
  </div> 
 </div> 
+ 
 ```
 With an absolute path
 ```html
@@ -175,9 +219,9 @@ With an absolute path
    <h1 class="class1" aem-property-attribute-title="Preview" aem-property="title" 
      aem-property-type="textarea" aem-property-value="Default title value" aem-property-label="Preview title"> 
      <div aem-property="subTitle" aem-property-type="textfield" aem-property-value="Default subtitle value"> 
-       <span aem-property="subTitleColoring" aem-property-type="colorfield" 
-         aem-property-label="Subtitle Coloring"></span> 
-     </div> 
+       <img aem-attribute-src-name="theSrcOfMyComp" aem-attribute-src-label="test" aem-attribute-src-type="textfield" aem-attribute-src-value="#" aem-property="subTitleColoring" aem-property-type="colorfield" aem-property-label="Subtitle Coloring"/> 
+     </div>
+     <a aem-attribute-href-name="theHrefOfMyComp2" aem-attribute-href-label="Href test" aem-attribute-href-type="textfield" aem-attribute-href-value="#"></a>
      <p aem-property="upperTitle" aem-property-type="textarea" aem-property-label="Upper title"></p> 
    </h1> 
    <p aem-property="text" aem-property-type="numberfield"></p> 
@@ -189,5 +233,6 @@ With an absolute path
    <li aem-property="mySelect" aem-property-type="select" aem-property-options="option1,option2"></li> 
  </div> 
 </div>
+
 ```
 NOTE: You can add various components of various paths at the same time.
